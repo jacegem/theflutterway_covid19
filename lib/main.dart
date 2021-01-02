@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:theflutterway_covid19/constant.dart';
-import 'package:theflutterway_covid19/counter.dart';
+import 'package:theflutterway_covid19/widgets/counter.dart';
+import 'package:theflutterway_covid19/widgets/my_clipper.dart';
+import 'package:theflutterway_covid19/widgets/my_header.dart';
+
+import 'info_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,14 +16,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Covid 19',
-        theme: ThemeData(
-          scaffoldBackgroundColor: kBackgroundColor,
-          fontFamily: 'Poppins',
-          textTheme: Typography.blackCupertino,
-        ),
-        home: HomeScreen());
+      debugShowCheckedModeBanner: false,
+      title: 'Covid 19',
+      theme: ThemeData(
+        scaffoldBackgroundColor: kBackgroundColor,
+        fontFamily: 'Poppins',
+        textTheme: Typography.blackCupertino,
+      ),
+      home: HomeScreen(),
+      // home: InfoScreen(),
+    );
   }
 }
 
@@ -30,60 +36,10 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ClipPath(
-              clipper: MyClipper(),
-              child: Container(
-                padding: EdgeInsets.only(
-                  left: 40,
-                  top: 50,
-                  right: 20,
-                ),
-                height: 350,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.topLeft,
-                    colors: [
-                      Color(0xFF3383CD),
-                      Color(0xFF11249F),
-                    ],
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/virus.png'),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: SvgPicture.asset('assets/icons/menu.svg')),
-                    SizedBox(height: 20),
-                    Expanded(
-                        child: Stack(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/Drcorona.svg',
-                          width: 230,
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.topCenter,
-                        ),
-                        Positioned(
-                          top: 20,
-                          left: 150,
-                          child: Text(
-                            'All you need \nis stay at home.',
-                            style: kHeadingTextStyle.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Container(),
-                      ],
-                    ))
-                  ],
-                ),
-              ),
+            MyHeader(
+              image: 'assets/icons/Drcorona.svg',
+              textTop: "All you need",
+              textBottom: "is stay at home.",
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -207,6 +163,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.all(20),
                     height: 178,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -230,27 +187,5 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class MyClipper extends CustomClipper<Path> {
-  @override
-  getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 80);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height,
-      size.width,
-      size.height - 80,
-    );
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper oldClipper) {
-    return false;
   }
 }

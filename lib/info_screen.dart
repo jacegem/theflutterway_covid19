@@ -115,31 +115,33 @@ class PreventCard extends StatelessWidget {
             ),
             Image.asset(image),
             Positioned(
-                left: 130,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                  height: 136,
-                  width: MediaQuery.of(context).size.width - 170,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        title,
-                        style: kTitleTextstyle.copyWith(fontSize: 16),
+              top: 50,
+              left: 130,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                height: 136,
+                width: MediaQuery.of(context).size.width - 170,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: kTitleTextstyle.copyWith(fontSize: 16),
+                    ),
+                    Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 12,
                       ),
-                      Text(
-                        text,
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                      Align(
-                          alignment: Alignment.topRight,
-                          child: SvgPicture.asset('assets/icons/forward.svg'))
-                    ],
-                  ),
-                ))
+                    ),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: SvgPicture.asset('assets/icons/forward.svg'))
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

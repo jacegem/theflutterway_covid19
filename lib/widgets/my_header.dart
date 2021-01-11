@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:theflutterway_covid19/info_screen.dart';
+import 'package:theflutterway_covid19/main.dart';
 
 import '../constant.dart';
+import '../home_screen.dart';
 import 'my_clipper.dart';
 
 class MyHeader extends StatelessWidget {
